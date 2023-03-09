@@ -1,3 +1,12 @@
 FROM node:18-alpine
 
-CMD ["echo", "hello world"]
+RUN mkdir /app
+WORKDIR /app
+
+COPY . .
+
+RUN npm ci
+
+RUN npm run build
+
+CMD ["npm", "run", "start"]
